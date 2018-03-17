@@ -1,0 +1,33 @@
+export cloud_name=ddnlc2jur
+export api_key=163352747198365
+export api_secret=F9Z9Gv_3ewSroVl0_hlaMfSgsw0
+
+Para WIndows 
+
+SET cloud_name=ddnlc2jur
+SET api_key=163352747198365
+SET api_secret=F9Z9Gv_3ewSroVl0_hlaMfSgsw0
+
+
+
+export se utiliza para agregar variables de entorno en producción. 
+
+Comando npm. 
+
+
+npm init // Se usa para comenzar un nuevo proyecto nodejs
+
+--save se utiliza para que la dependencia de guarde en el archivo package.json
+archivo donde se guarda toda la información de nuestro proyecto.
+Como repositorio, autor, scripts de ejecucioón, etc. 
+
+
+npm install --save express // para instalar el proyecto con  el framework express
+
+npm install --save express-formidable // para leer información desde inputs y archivos como imagenes desde HTTP
+
+npm install --save cloudinary //SDK de la plataforma cloudinary, plataforma para alojar archivos en la nube
+
+npm install --save fs-extra // esta dependencia sirve para copiar, cortar, eliminar archivos dentro del servidor. 
+
+npm install --save mysql2 //driver para integrar con Mysql2
