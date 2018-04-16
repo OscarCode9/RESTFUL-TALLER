@@ -1,9 +1,6 @@
-
-
-
 const mysql = require('mysql2/promise');
-
 const Img = require('../modelo');
+const crytoFun =require('../crypto');
 
 async function showAllImg(req, res) {
 
@@ -13,7 +10,7 @@ async function showAllImg(req, res) {
       host: 'localhost',
       user: 'root',
       database: 'imgFull',
-      password: 'tristeGDA13##1'
+      password: process.env.passwordDB
     });
 
     const sql = "SELECT * FROM IMG";
@@ -50,7 +47,7 @@ async function showImgById(req, res) {
       host: 'localhost',
       user: 'root',
       database: 'imgFull',
-      password: 'tristeGDA13##1'
+      password: process.env.passwordDB
     });
 
     const [rows] = await connection.execute(sql, [idImg]);
@@ -78,10 +75,10 @@ async function showImgById(req, res) {
 async function newImg(req, res) {
 
   const idImg = null;
-  const userName = req.fields.userName;
-  const urlImg = req.fields.urlImg;
-  const likes = req.fields.likes;
-  const date = req.fields.date;
+  const userName =crytoFun.encrypt(req.fields.userName);
+  const urlImg =crytoFun.encrypt(req.fields.urlImg);
+  const likes = crytoFun.encrypt (req.fields.likes);
+  const date =crytoFun.encrypt(req.fields.date);
 
   const anImg = new Img(idImg, userName, urlImg, likes, date);
 
@@ -93,26 +90,17 @@ async function newImg(req, res) {
       host: 'localhost',
       user: 'root',
       database: 'imgFull',
-      password: 'tristeGDA13##1'
+      password: process.env.passwordDB
     });
 
     const [rows] = await connection.execute(sql, [anImg.getUserName(), anImg.getUrlImg(), anImg.getLikes()]);
 
     if (rows.affectedRows === 1) {
-
       anImg.setIdImg(rows.insertId);
       res.status(200).send({ img: anImg });
-
     } else {
-
       res.status(400).send({ error: 'Ningun dato insertado' });
-
     }
-
-
-
-
-
   } catch (error) {
     res.status(500).send({ error: error });
   }
@@ -135,7 +123,7 @@ async function deleteImgById(req, res) {
       host: 'localhost',
       user: 'root',
       database: 'imgFull',
-      password: 'tristeGDA13##1'
+      password: process.env.passwordDB
     });
 
     const [rows] = await connection.execute(sql, [idImg]);

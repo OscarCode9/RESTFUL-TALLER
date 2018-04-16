@@ -1,6 +1,5 @@
 CREATE database imgFull;
 
-
 CREATE TABLE IMG (
  idImg int not null AUTO_INCREMENT,
  userName varchar(45),

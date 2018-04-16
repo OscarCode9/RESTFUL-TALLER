@@ -19,11 +19,12 @@ app.use(formidable({
 //  Connect all our routes to our application
 app.use('/', rutas);
 
+/*
 cloudinary.config({
   cloud_name: process.env.cloud_name,
   api_key: process.env.api_key,
   api_secret: process.env.api_secret
-});
+});*/
 
 
 
